@@ -4,8 +4,13 @@ var pos = 0;
 var slideWidth = 1000;
 var sliderList = document.querySelector(".mySlides");
 var slideItem = document.querySelectorAll(".slide-item");
+var dot = document.getElementsByClassName("dot");
 var animationInProgress = false;
-
+console.log(sliderList.children.length);
+if (sliderList.children.length == 1 ) {
+	sliderList.appendChild(sliderList.children[0].cloneNode(true));
+}
+dots();
 function currentSlide(n){
 	//stop animation
 	if (animationInProgress) {
@@ -109,5 +114,11 @@ function showSlides(n) {
 			}
 		}
 	}, 10);
-
+	dots();
+}
+function dots() {
+	for(i=0; i < dot.length; i++){
+		dot[i].className = dot[i].className.replace("active","");
+	}
+	dot[pos].className += " active";
 }
