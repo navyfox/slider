@@ -58,46 +58,41 @@ img {
 .active, .dot:hover{
 	background-color: #717171;
 }
-.fade{
-	-webkit-animation-name: fade;
-	-webkit-animation-duration:1s;
-	animation-name:fade;
-	animation-duration:1s;
-}
-/*@-webkit-keyframes fade{
-	0%{opacity:0.4;}
-	100%{opacity:1;}
-}*/
-@keyframes fade{
-	0%{opacity:0.4;}
-	100%{opacity:1;}
-}
-.div {
-	width: 100px;
-	height: 100px;
-	background: red;
-	position: relative;
-	-webkit-animation: mymove 5s; /* Safari 4.0 - 8.0 */
-	animation: mymove 5s;
-}
-@-webkit-keyframes mymove {
-	from {left: 0px;}
-	to {left: 200px;}
-}
-@keyframes mymove {
-	from {left: 0px;}
-	to {left: 200px;}
-}
+/*.fade{*/
+	/*-webkit-animation-name: fade;*/
+	/*-webkit-animation-duration:1s;*/
+	/*animation-name:fade;*/
+	/*animation-duration:1s;*/
+/*}*/
+/*!*@-webkit-keyframes fade{*/
+	/*0%{opacity:0.4;}*/
+	/*100%{opacity:1;}*/
+/*}*!*/
+/*@keyframes fade{*/
+	/*0%{opacity:0.4;}*/
+	/*100%{opacity:1;}*/
+/*}*/
+/*.div {*/
+	/*width: 100px;*/
+	/*height: 100px;*/
+	/*background: red;*/
+	/*position: relative;*/
+	/*-webkit-animation: mymove 5s; !* Safari 4.0 - 8.0 *!*/
+	/*animation: mymove 5s;*/
+/*}*/
+/*@-webkit-keyframes mymove {*/
+	/*from {left: 0px;}*/
+	/*to {left: 200px;}*/
+/*}*/
+/*@keyframes mymove {*/
+	/*from {left: 0px;}*/
+	/*to {left: 200px;}*/
+/*}*/
 #train {
 	position: relative;
 	right: 0;
-	cursor: pointer;
-	-webkit-transition: right 2s; /* Safari */
-	transition: right 2s;
 }
-#train.end {
-	right: 1000px;
-}
+
 /*#train2 {*/
 	/*position: relative;*/
 	/*left: 0;*/
