@@ -7,23 +7,26 @@
 </head>
 <body>
 	<div class="slidershow-container">
-		<div class="mySlides" id="train">
-			<div class="picture"><img src="img/1.jpg"></div>
-			<div class="picture" id="train2"><img src="img/2.jpg"></div>
-			<div class="picture"><img src="img/3.jpg"></div>
-			<div class="picture"><img src="img/1.jpg"></div>
-			<div class="picture"><img src="img/3.jpg"></div>
-			<div class="picture"><img src="img/1.jpg"></div>
+		<div class="mySlides" id="loop">
+			<div class="slide-item"><img src="img/1.jpg"></div>
+			<div class="slide-item"><img src="img/2.jpg"></div>
+			<div class="slide-item"><img src="img/3.jpg"></div>
+			<div class="slide-item"><img src="img/1.jpg"></div>
+			<div class="slide-item"><img src="img/3.jpg"></div>
+			<div class="slide-item"><img src="img/1.jpg"></div>
 		</div>
 
-		<a onclick="scrollToPrev(1)" class="prev">&#10094</a>
-		<a onclick="scrollToNext(0)" class="next">&#10095</a>
+		<a onclick="scrollToPrev(1)" id="#prev_slide" class="prev">&#10094</a>
+		<a onclick="scrollToNext(0)" id="#next_slide" class="next">&#10095</a>
 	</div>
 	<br>
 	<div style="text-align:center;">
+		<span class="dot" onclick="currentSlide(0)"></span>
 		<span class="dot" onclick="currentSlide(1)"></span>
 		<span class="dot" onclick="currentSlide(2)"></span>
 		<span class="dot" onclick="currentSlide(3)"></span>
+		<span class="dot" onclick="currentSlide(4)"></span>
+		<span class="dot" onclick="currentSlide(5)"></span>
 
 	</div>
 	<div class="div"></div>

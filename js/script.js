@@ -1,91 +1,111 @@
-var slideIndex=0;
 var isLeftToRight = 0;
 var startPosition = 0;
-var slidePosition = 1;
 var pos = 0;
 var slideWidth = 1000;
 var sliderList = document.querySelector(".mySlides");
-var slides = document.querySelectorAll(".picture");
-//showSlides(slideIndex);
+var slideItem = document.querySelectorAll(".slide-item");
+var animationInProgress = false;
 
-function plusSlides(n){
-	showSlides(n);
+function currentSlide(n){
+	//stop animation
+	if (animationInProgress) {
+		return false;
+	}
+	if (n < pos) {
+		var start = Date.now();
+		t = pos - n;
+		var timer = setInterval(function () {
+			var timePassed = Date.now() - start;
+			scrollToPrev(1);
+			if (timePassed > 1000 * t) {
+				clearInterval(timer);
+			}
+		}, 10 * t);
+	} if (n > pos) {
+		var start = Date.now();
+		t = n - pos;
+		var timer = setInterval(function () {
+			var timePassed = Date.now() - start;
+			scrollToNext(0);
+			if (timePassed > 1000 * t) {
+				clearInterval(timer);
+			}
+		}, 10 * t);
+	} else {
+		return false;
+	}
 }
 function scrollToPrev(n) {
+	//stop animation
+	if (animationInProgress) {
+		return false;
+	}
+	animationInProgress = true;
+
 	pos--;
-	console.log(pos);
-	console.log(startPosition);
 	if (pos < 0) {
 		var children = sliderList.children;
-		startPosition = -(pos + 2) * 1000;
+		startPosition = pos * slideWidth;
 		sliderList.style.left = startPosition + 'px';
-		console.log(sliderList.style.left);
-		//sliderList.style.left = -(pos + 2) * slideWidth + 'px';
-		sliderList.insertBefore(children[slides.length - 1], children[0]);
+		sliderList.insertBefore(children[slideItem.length - 1], children[0]);
 		pos++;
 	}
-	requestAnimationFrame(function(){ //ожидаем следующего запланированного reflow/repain;
+	requestAnimationFrame(function(){
 		requestAnimationFrame(function(){
-			//предыдущий reflow рассчитал новый dom элемент
-			//можно делать анимацию.
 			showSlides(n);
 		})
 	});
+
+	setTimeout(function(){ animationInProgress = false; }, 1000);
 }
 
 function scrollToNext(n) {
-	console.log(pos);
+	//stop animation
+	if (animationInProgress) {
+		return false;
+	}
+	animationInProgress = true;
+
 	pos++;
-	console.log(pos);
-	console.log(startPosition);
-	if (pos > slides.length -1) {
-		startPosition = -(pos - 2) * 1000;
+	if (pos > slideItem.length -1) {
+		startPosition = -(pos - 2) * slideWidth;
 		sliderList.style.left = startPosition + 'px';
 		var cloneElem = sliderList.children[0].cloneNode(true);
 		sliderList.appendChild(cloneElem);
 		sliderList.removeChild(sliderList.children[0]);
 		pos--;
 	}
-	requestAnimationFrame(function(){ //ожидаем следующего запланированного reflow/repain;
+	requestAnimationFrame(function(){
 		requestAnimationFrame(function(){
-			//предыдущий reflow рассчитал новый dom элемент
-			//можно делать анимацию.
 			showSlides(n);
 		})
 	});
-}
 
-function currentSlide(n){
-	showSlides(slideIndex = n);
+	setTimeout(function(){ animationInProgress = false; }, 1000);
 }
 
 function showSlides(n) {
 
 	isLeftToRight = n;
-	var start = Date.now(); // сохранить время начала
+	var start = Date.now();
 
 	var timer = setInterval(function () {
-		// вычислить сколько времени прошло из opts.duration
 		var timePassed = Date.now() - start;
 		if (isLeftToRight) {
-			train.style.left = startPosition + timePassed + 'px';
+			loop.style.left = startPosition + timePassed + 'px';
 		}
 		else {
-			train.style.left = (startPosition - timePassed) + 'px';
+			loop.style.left = (startPosition - timePassed) + 'px';
 		}
 		if (timePassed > 1000) {
 			timePassed = 1000;
 			clearInterval(timer);
 			if (isLeftToRight) {
-				console.log(startPosition);
 				startPosition = startPosition + timePassed;
-				train.style.left = startPosition + 'px';
-
+				loop.style.left = startPosition + 'px';
 			} else {
-				console.log(startPosition);
 				startPosition = startPosition - timePassed;
-				train.style.left = startPosition + 'px';
-
+				loop.style.left = startPosition + 'px';
 			}
 		}
 	}, 10);
