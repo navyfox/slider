@@ -17,8 +17,8 @@ function scrollToPrev(n) {
 	console.log(startPosition);
 	if (pos < 0) {
 		var children = sliderList.children;
-		sliderList.style.left = 0 + 'px';
-		startPosition = -1000;
+		startPosition = -(pos + 2) * 1000;
+		sliderList.style.left = startPosition + 'px';
 		console.log(sliderList.style.left);
 		//sliderList.style.left = -(pos + 2) * slideWidth + 'px';
 		sliderList.insertBefore(children[slides.length - 1], children[0]);
@@ -39,9 +39,8 @@ function scrollToNext(n) {
 	console.log(pos);
 	console.log(startPosition);
 	if (pos > slides.length -1) {
-		sliderList.style.left = "0px";
-		sliderList.style.left = -1000 + 'px';
-		startPosition = -1000;
+		startPosition = -(pos - 2) * 1000;
+		sliderList.style.left = startPosition + 'px';
 		var cloneElem = sliderList.children[0].cloneNode(true);
 		sliderList.appendChild(cloneElem);
 		sliderList.removeChild(sliderList.children[0]);
